@@ -6,36 +6,39 @@
         Width="1280"
         Height="720">
   <Window.Resources>
-    <SolidColorBrush x:Key="HudTextPrimary" Color="#F8FBFF" />
-    <SolidColorBrush x:Key="HudTextSecondary" Color="#A7B8CA" />
-    <SolidColorBrush x:Key="HudCyan" Color="#22D3EE" />
-    <SolidColorBrush x:Key="HudMagenta" Color="#F472B6" />
-    <SolidColorBrush x:Key="HudAmber" Color="#F59E0B" />
-    <SolidColorBrush x:Key="HudGreen" Color="#7CFF6B" />
-    <SolidColorBrush x:Key="HudPanelDark" Color="#EA050913" />
-    <SolidColorBrush x:Key="HudPanelMid" Color="#DD0B1422" />
-    <SolidColorBrush x:Key="HudBorderSoft" Color="#6622D3EE" />
+    <SolidColorBrush x:Key="HudTextPrimary" Color="#FFF7FF" />
+    <SolidColorBrush x:Key="HudTextSecondary" Color="#D6B8D8" />
+    <SolidColorBrush x:Key="HudTextMuted" Color="#8E789A" />
+    <SolidColorBrush x:Key="HudMagenta" Color="#FF4FD8" />
+    <SolidColorBrush x:Key="HudViolet" Color="#B45CFF" />
+    <SolidColorBrush x:Key="HudHotPink" Color="#FF79C6" />
+    <SolidColorBrush x:Key="HudCyan" Color="#4DE7FF" />
+    <SolidColorBrush x:Key="HudAmber" Color="#FFB84D" />
+    <SolidColorBrush x:Key="HudGreen" Color="#B6FF5C" />
+    <SolidColorBrush x:Key="HudPanelDark" Color="#F0070610" />
+    <SolidColorBrush x:Key="HudPanelMid" Color="#E1120B1F" />
+    <SolidColorBrush x:Key="HudBorderSoft" Color="#77FF4FD8" />
 
     <LinearGradientBrush x:Key="HudPanelGradient" StartPoint="0,0" EndPoint="1,1">
-      <GradientStop Color="#F3060B14" Offset="0" />
-      <GradientStop Color="#DC0B1F2F" Offset="0.48" />
-      <GradientStop Color="#D9140A1E" Offset="1" />
+      <GradientStop Color="#F4070610" Offset="0" />
+      <GradientStop Color="#E9180A28" Offset="0.46" />
+      <GradientStop Color="#D7270A34" Offset="1" />
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="HudWidgetGradient" StartPoint="0,0" EndPoint="1,1">
-      <GradientStop Color="#E6080C14" Offset="0" />
-      <GradientStop Color="#CC101827" Offset="0.56" />
-      <GradientStop Color="#C20B1020" Offset="1" />
+      <GradientStop Color="#EF080611" Offset="0" />
+      <GradientStop Color="#DD160B24" Offset="0.48" />
+      <GradientStop Color="#CC2B0B38" Offset="1" />
     </LinearGradientBrush>
 
     <Style x:Key="HudButton" TargetType="Button">
       <Setter Property="Foreground" Value="{StaticResource HudTextPrimary}" />
-      <Setter Property="Background" Value="#3312E9F3" />
-      <Setter Property="BorderBrush" Value="#AA22D3EE" />
+      <Setter Property="Background" Value="#3DFF4FD8" />
+      <Setter Property="BorderBrush" Value="#DDFF4FD8" />
       <Setter Property="BorderThickness" Value="1" />
-      <Setter Property="Padding" Value="14,6" />
+      <Setter Property="Padding" Value="16,7" />
       <Setter Property="FontSize" Value="11" />
-      <Setter Property="FontWeight" Value="SemiBold" />
+      <Setter Property="FontWeight" Value="Bold" />
       <Setter Property="Cursor" Value="Hand" />
       <Setter Property="Template">
         <Setter.Value>
@@ -44,23 +47,26 @@
                     Background="{TemplateBinding Background}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
-                    CornerRadius="4">
+                    CornerRadius="2">
               <Grid>
-                <Rectangle Width="3"
+                <Rectangle Width="4"
                            HorizontalAlignment="Left"
-                           Fill="{StaticResource HudMagenta}" />
+                           Fill="{StaticResource HudCyan}" />
+                <Rectangle Height="1"
+                           VerticalAlignment="Top"
+                           Fill="#88FFFFFF" />
                 <ContentPresenter HorizontalAlignment="Center"
                                   VerticalAlignment="Center"
-                                  Margin="8,0" />
+                                  Margin="10,0" />
               </Grid>
             </Border>
             <ControlTemplate.Triggers>
               <Trigger Property="IsMouseOver" Value="True">
-                <Setter TargetName="Root" Property="Background" Value="#5512E9F3" />
-                <Setter TargetName="Root" Property="BorderBrush" Value="#FF22D3EE" />
+                <Setter TargetName="Root" Property="Background" Value="#66FF4FD8" />
+                <Setter TargetName="Root" Property="BorderBrush" Value="#FFFFFFFF" />
               </Trigger>
               <Trigger Property="IsPressed" Value="True">
-                <Setter TargetName="Root" Property="Background" Value="#6622D3EE" />
+                <Setter TargetName="Root" Property="Background" Value="#88B45CFF" />
               </Trigger>
             </ControlTemplate.Triggers>
           </ControlTemplate>
@@ -77,50 +83,54 @@
         <Setter.Value>
           <ControlTemplate TargetType="CheckBox">
             <Border x:Name="Root"
-                    Background="#26060B14"
-                    BorderBrush="#5522D3EE"
+                    Background="#33080611"
+                    BorderBrush="#66FF4FD8"
                     BorderThickness="1"
-                    CornerRadius="5"
-                    Padding="8,6"
-                    Margin="0,4,0,0">
+                    CornerRadius="2"
+                    Padding="8,7"
+                    Margin="0,5,0,0">
               <Grid>
                 <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="36" />
+                  <ColumnDefinition Width="42" />
                   <ColumnDefinition Width="*" />
+                  <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Border x:Name="Indicator"
-                        Width="28"
-                        Height="14"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        Background="#22000000"
-                        BorderBrush="#88A7B8CA"
-                        BorderThickness="1"
-                        CornerRadius="7">
-                  <Ellipse x:Name="Dot"
-                           Width="8"
-                           Height="8"
-                           HorizontalAlignment="Left"
-                           Margin="3,0,0,0"
-                           Fill="#FFA7B8CA" />
-                </Border>
+                <Grid Width="32" Height="16" HorizontalAlignment="Left" VerticalAlignment="Center">
+                  <Border x:Name="Indicator"
+                          Background="#22000000"
+                          BorderBrush="#99D6B8D8"
+                          BorderThickness="1"
+                          CornerRadius="2" />
+                  <Rectangle x:Name="Dot"
+                             Width="10"
+                             Height="10"
+                             HorizontalAlignment="Left"
+                             Margin="3,0,0,0"
+                             Fill="#FFD6B8D8" />
+                </Grid>
                 <ContentPresenter Grid.Column="1"
                                   VerticalAlignment="Center"
                                   RecognizesAccessKey="True" />
+                <TextBlock Grid.Column="2"
+                           Text="LINK"
+                           Foreground="{StaticResource HudTextMuted}"
+                           FontSize="8"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center" />
               </Grid>
             </Border>
             <ControlTemplate.Triggers>
               <Trigger Property="IsChecked" Value="True">
-                <Setter TargetName="Root" Property="BorderBrush" Value="#DD22D3EE" />
-                <Setter TargetName="Root" Property="Background" Value="#3312E9F3" />
-                <Setter TargetName="Indicator" Property="BorderBrush" Value="#FF22D3EE" />
-                <Setter TargetName="Indicator" Property="Background" Value="#4422D3EE" />
+                <Setter TargetName="Root" Property="BorderBrush" Value="#FFFF4FD8" />
+                <Setter TargetName="Root" Property="Background" Value="#44FF4FD8" />
+                <Setter TargetName="Indicator" Property="BorderBrush" Value="#FFFF79C6" />
+                <Setter TargetName="Indicator" Property="Background" Value="#33120B1F" />
                 <Setter TargetName="Dot" Property="HorizontalAlignment" Value="Right" />
                 <Setter TargetName="Dot" Property="Margin" Value="0,0,3,0" />
-                <Setter TargetName="Dot" Property="Fill" Value="#FF7CFF6B" />
+                <Setter TargetName="Dot" Property="Fill" Value="#FFB6FF5C" />
               </Trigger>
               <Trigger Property="IsMouseOver" Value="True">
-                <Setter TargetName="Root" Property="BorderBrush" Value="#FF22D3EE" />
+                <Setter TargetName="Root" Property="BorderBrush" Value="#FFFFFFFF" />
               </Trigger>
             </ControlTemplate.Triggers>
           </ControlTemplate>
@@ -129,34 +139,34 @@
     </Style>
 
     <Style x:Key="OverlayWidgetChrome" TargetType="Border">
-      <Setter Property="CornerRadius" Value="12" />
+      <Setter Property="CornerRadius" Value="4" />
       <Setter Property="Background" Value="{StaticResource HudWidgetGradient}" />
-      <Setter Property="BorderBrush" Value="#AA22D3EE" />
+      <Setter Property="BorderBrush" Value="#D9FF4FD8" />
       <Setter Property="BorderThickness" Value="1" />
       <Setter Property="Padding" Value="14" />
       <Setter Property="Effect">
         <Setter.Value>
-          <DropShadowEffect Color="#22D3EE" BlurRadius="22" ShadowDepth="0" Opacity="0.28" />
+          <DropShadowEffect Color="#FF4FD8" BlurRadius="24" ShadowDepth="0" Opacity="0.36" />
         </Setter.Value>
       </Setter>
     </Style>
 
     <Style x:Key="EditPanelChrome" TargetType="Border">
       <Setter Property="Padding" Value="12,10" />
-      <Setter Property="CornerRadius" Value="10" />
+      <Setter Property="CornerRadius" Value="3" />
       <Setter Property="Background" Value="{StaticResource HudPanelGradient}" />
-      <Setter Property="BorderBrush" Value="#9922D3EE" />
+      <Setter Property="BorderBrush" Value="#CCFF4FD8" />
       <Setter Property="BorderThickness" Value="1" />
       <Setter Property="Effect">
         <Setter.Value>
-          <DropShadowEffect Color="#22D3EE" BlurRadius="18" ShadowDepth="0" Opacity="0.24" />
+          <DropShadowEffect Color="#FF4FD8" BlurRadius="22" ShadowDepth="0" Opacity="0.30" />
         </Setter.Value>
       </Setter>
     </Style>
 
     <Style x:Key="ResizeThumbStyle" TargetType="Thumb">
-      <Setter Property="Width" Value="22" />
-      <Setter Property="Height" Value="22" />
+      <Setter Property="Width" Value="24" />
+      <Setter Property="Height" Value="24" />
       <Setter Property="HorizontalAlignment" Value="Right" />
       <Setter Property="VerticalAlignment" Value="Bottom" />
       <Setter Property="Cursor" Value="SizeNWSE" />
@@ -164,19 +174,19 @@
         <Setter.Value>
           <ControlTemplate TargetType="Thumb">
             <Border x:Name="Root"
-                    Background="#D4140A1E"
-                    BorderBrush="#FFF472B6"
+                    Background="#EE24072E"
+                    BorderBrush="#FFFF4FD8"
                     BorderThickness="1"
-                    CornerRadius="7">
+                    CornerRadius="2">
               <Grid>
                 <TextBlock Text="↘"
-                         HorizontalAlignment="Center"
-                         VerticalAlignment="Center"
-                         Foreground="White"
-                         FontSize="11"
-                         FontWeight="Bold" />
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Foreground="#FFF7FF"
+                           FontSize="11"
+                           FontWeight="Bold" />
                 <Rectangle Height="2"
-                           Width="11"
+                           Width="12"
                            HorizontalAlignment="Right"
                            VerticalAlignment="Bottom"
                            Margin="0,0,4,4"
@@ -185,7 +195,7 @@
             </Border>
             <ControlTemplate.Triggers>
               <Trigger Property="IsMouseOver" Value="True">
-                <Setter TargetName="Root" Property="Background" Value="#F02A0F35" />
+                <Setter TargetName="Root" Property="Background" Value="#FF40104E" />
                 <Setter TargetName="Root" Property="BorderBrush" Value="#FFFFFFFF" />
               </Trigger>
             </ControlTemplate.Triggers>
@@ -229,17 +239,21 @@
                   <ColumnDefinition Width="*" />
                   <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Rectangle Width="4"
-                           Height="18"
-                           Fill="{StaticResource HudMagenta}"
-                           RadiusX="2"
-                           RadiusY="2" />
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                  <Rectangle Width="4"
+                             Height="20"
+                             Fill="{StaticResource HudMagenta}" />
+                  <Rectangle Width="2"
+                             Height="20"
+                             Fill="{StaticResource HudCyan}"
+                             Margin="3,0,0,0" />
+                </StackPanel>
                 <StackPanel Grid.Column="1"
                             Orientation="Horizontal"
-                            Margin="8,0,0,0"
+                            Margin="10,0,0,0"
                             VerticalAlignment="Center">
-                  <TextBlock Text="WIDGET"
-                             Foreground="{StaticResource HudCyan}"
+                  <TextBlock Text="UNIT FRAME"
+                             Foreground="{StaticResource HudMagenta}"
                              FontSize="9"
                              FontWeight="Bold" />
                   <TextBlock Text=" // "
@@ -249,11 +263,11 @@
                   <TextBlock Text="{Binding DisplayName}"
                              Foreground="{StaticResource HudTextPrimary}"
                              FontSize="11"
-                             FontWeight="SemiBold" />
+                             FontWeight="Bold" />
                 </StackPanel>
                 <TextBlock Grid.Column="2"
-                           Text="DRAG / RESIZE"
-                           Foreground="{StaticResource HudAmber}"
+                           Text="SYNC / EDIT"
+                           Foreground="{StaticResource HudGreen}"
                            FontSize="9"
                            FontWeight="Bold"
                            VerticalAlignment="Center" />
@@ -261,12 +275,17 @@
 
               <Grid Grid.Row="1">
                 <ContentControl Content="{Binding Content}" />
-                <Rectangle Height="1"
+                <Rectangle Height="2"
                            VerticalAlignment="Top"
-                           Fill="#4422D3EE" />
-                <Rectangle Width="1"
+                           Fill="#55FF4FD8" />
+                <Rectangle Width="2"
                            HorizontalAlignment="Right"
-                           Fill="#33F472B6" />
+                           Fill="#444DE7FF" />
+                <Rectangle Width="36"
+                           Height="2"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Bottom"
+                           Fill="#AAFFB84D" />
               </Grid>
 
               <Thumb Grid.RowSpan="2"
@@ -284,7 +303,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Bottom"
             Margin="18"
-            MinWidth="430"
+            MinWidth="470"
             Visibility="{Binding IsEditMode, Converter={StaticResource BooleanToVisibilityConverter}}">
       <Grid>
         <Grid.ColumnDefinitions>
@@ -292,44 +311,49 @@
           <ColumnDefinition Width="*" />
           <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <Border Width="44"
-                Height="44"
-                Background="#2412E9F3"
-                BorderBrush="{StaticResource HudCyan}"
+        <Border Width="48"
+                Height="48"
+                Background="#3324072E"
+                BorderBrush="{StaticResource HudMagenta}"
                 BorderThickness="1"
-                CornerRadius="8"
+                CornerRadius="2"
                 Margin="0,0,12,0">
           <Grid>
-            <Ellipse Width="12"
-                     Height="12"
+            <Rectangle Width="28"
+                       Height="28"
+                       Stroke="{StaticResource HudMagenta}"
+                       StrokeThickness="1"
+                       Opacity="0.85" />
+            <Ellipse Width="11"
+                     Height="11"
                      Fill="{StaticResource HudGreen}"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center" />
-            <Ellipse Width="28"
-                     Height="28"
-                     Stroke="{StaticResource HudCyan}"
-                     StrokeThickness="1"
-                     Opacity="0.55" />
+            <Rectangle Width="2"
+                       Height="38"
+                       Fill="{StaticResource HudCyan}"
+                       HorizontalAlignment="Right"
+                       Margin="0,0,6,0" />
           </Grid>
         </Border>
         <StackPanel Grid.Column="1"
                     VerticalAlignment="Center">
           <StackPanel Orientation="Horizontal">
-            <TextBlock Text="OVERLAY CONTROL"
-                       Foreground="{StaticResource HudCyan}"
+            <TextBlock Text="UNIT CONTROL"
+                       Foreground="{StaticResource HudMagenta}"
                        FontWeight="Bold"
                        FontSize="11" />
-            <TextBlock Text=" // EDIT MODE ACTIVE"
+            <TextBlock Text=" // EDIT INTERFACE ACTIVE"
                        Foreground="{StaticResource HudTextPrimary}"
                        FontWeight="Bold"
                        FontSize="11" />
           </StackPanel>
-          <TextBlock Text="Drag para posicionar · esquina ↘ para redimensionar · Ctrl+Shift+O recupera edicion"
+          <TextBlock Text="Drag para posicionar · esquina ↘ para redimensionar · Ctrl+Shift+O recupera sincronizacion"
                      Foreground="{StaticResource HudTextSecondary}"
                      FontSize="11"
                      Margin="0,5,0,0" />
           <TextBlock Text="Atajo global no disponible; otra app puede estar usandolo."
-                     Foreground="#FCA5A5"
+                     Foreground="#FF9BB0"
                      FontSize="11"
                      Margin="0,4,0,0"
                      Visibility="Collapsed"
@@ -337,7 +361,7 @@
         </StackPanel>
         <Button Grid.Column="2"
                 Style="{StaticResource HudButton}"
-                Content="BLOQUEAR HUD"
+                Content="LOCK UNIT HUD"
                 Margin="14,0,0,0"
                 Command="{Binding ToggleEditModeCommand}" />
       </Grid>
@@ -347,7 +371,7 @@
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
             Margin="18"
-            Width="260"
+            Width="270"
             Visibility="{Binding IsEditMode, Converter={StaticResource BooleanToVisibilityConverter}}">
       <StackPanel>
         <Grid Margin="0,0,0,8">
@@ -356,31 +380,31 @@
             <ColumnDefinition Width="Auto" />
           </Grid.ColumnDefinitions>
           <StackPanel>
-            <TextBlock Text="LOADOUT"
-                       Foreground="{StaticResource HudMagenta}"
+            <TextBlock Text="MODULE BAY"
+                       Foreground="{StaticResource HudHotPink}"
                        FontSize="10"
                        FontWeight="Bold" />
-            <TextBlock Text="WIDGETS ACTIVOS"
+            <TextBlock Text="ACTIVE LOADOUT"
                        Foreground="{StaticResource HudTextPrimary}"
                        FontSize="16"
                        FontWeight="Bold" />
           </StackPanel>
           <Border Grid.Column="1"
-                  Width="34"
+                  Width="42"
                   Height="24"
-                  BorderBrush="{StaticResource HudAmber}"
+                  BorderBrush="{StaticResource HudGreen}"
                   BorderThickness="1"
-                  CornerRadius="5"
-                  Background="#22F59E0B">
-            <TextBlock Text="SYS"
-                       Foreground="{StaticResource HudAmber}"
+                  CornerRadius="2"
+                  Background="#22B6FF5C">
+            <TextBlock Text="SYNC"
+                       Foreground="{StaticResource HudGreen}"
                        FontSize="9"
                        FontWeight="Bold"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center" />
           </Border>
         </Grid>
-        <TextBlock Text="Activa los modulos que queres mantener en pantalla."
+        <TextBlock Text="Vincula modulos visuales al HUD activo."
                    Foreground="{StaticResource HudTextSecondary}"
                    FontSize="11"
                    Margin="0,0,0,8"
