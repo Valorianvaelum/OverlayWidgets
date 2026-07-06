@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Interop;
 using OverlayWidgets.Services;
@@ -126,6 +127,27 @@ public partial class MainWindow : Window
 
         _dragStart = null;
         _draggedWidget = null;
+        e.Handled = true;
+    }
+
+    private void ResizeThumb_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    {
+        // Prevent the resize handle from starting the normal widget move gesture.
+        _dragStart = null;
+        _draggedWidget = null;
+        e.Handled = true;
+    }
+
+    private void ResizeThumb_DragDelta(object sender, DragDeltaEventArgs e)
+    {
+        if (!_viewModel.IsEditMode || sender is not Thumb thumb || thumb.DataContext is not WidgetHostViewModel widget)
+        {
+            return;
+        }
+
+        widget.Width += e.HorizontalChange;
+        widget.Height += e.VerticalChange;
+        widget.KeepInside(ActualWidth, ActualHeight);
         e.Handled = true;
     }
 }
