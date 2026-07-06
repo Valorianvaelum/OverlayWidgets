@@ -1,0 +1,20 @@
+﻿OverlayWidgets
+
+
+winexe
+C#
+.cs
+G:\Proyectos\Proyectos Noctis\OPM\OverlayWidgets\obj\Debug\net8.0-windows10.0.19041.0\
+OverlayWidgets
+none
+false
+TRACE;DEBUG;NET;NET8_0;NETCOREAPP
+G:\Proyectos\Proyectos Noctis\OPM\OverlayWidgets\App.xaml
+3400016456
+
+291634233042
+2001064566268
+Views\MainWindow.xaml;Views\Widgets\ClockWidgetView.xaml;Views\Widgets\MediaWidgetView.xaml;
+
+False
+
