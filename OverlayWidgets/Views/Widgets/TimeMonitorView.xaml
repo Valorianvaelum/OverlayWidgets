@@ -1,0 +1,121 @@
+<UserControl x:Class="OverlayWidgets.Views.Widgets.TimeMonitorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+
+    <Grid Margin="0,0,0,9">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+      <StackPanel Orientation="Horizontal">
+        <Rectangle Width="5" Height="24" Fill="#FF2D2D" />
+        <Rectangle Width="4" Height="24" Fill="#FFB000" Margin="3,0,0,0" />
+        <Rectangle Width="2" Height="24" Fill="#7CFF55" Margin="3,0,0,0" />
+      </StackPanel>
+      <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
+        <TextBlock Text="TIME CODE"
+                   Foreground="#FFB000"
+                   FontFamily="Bahnschrift Condensed, Bahnschrift, Segoe UI"
+                   FontSize="13"
+                   FontWeight="Bold" />
+        <TextBlock Text="LOCAL DISPLAY / CH A-01"
+                   Foreground="#B7AFA892"
+                   FontFamily="Bahnschrift, Segoe UI"
+                   FontSize="9"
+                   FontWeight="Bold" />
+      </StackPanel>
+      <Border Grid.Column="2" BorderBrush="#FF7CFF55" BorderThickness="1" Background="#2211220A" Padding="7,2" VerticalAlignment="Top">
+        <TextBlock Text="OK"
+                   Foreground="#7CFF55"
+                   FontSize="10"
+                   FontWeight="Bold" />
+      </Border>
+    </Grid>
+
+    <Grid Grid.Row="1" VerticalAlignment="Center">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+      <StackPanel Width="22" Margin="0,2,10,2">
+        <Rectangle Height="6" Fill="#FF2D2D" />
+        <Rectangle Height="6" Fill="#FFB000" Margin="0,5,0,0" />
+        <Rectangle Height="6" Fill="#7CFF55" Margin="0,5,0,0" />
+        <Rectangle Height="6" Fill="#38DDF2" Margin="0,5,0,0" />
+      </StackPanel>
+
+      <StackPanel Grid.Column="1" VerticalAlignment="Center">
+        <TextBlock Text="{Binding Time}"
+                   Foreground="#FFF7EFD8"
+                   FontFamily="Consolas"
+                   FontSize="42"
+                   FontWeight="Bold"
+                   TextOptions.TextFormattingMode="Display" />
+        <Grid Margin="2,3,10,0">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="0.5*" />
+          </Grid.ColumnDefinitions>
+          <Rectangle Height="3" Fill="#7CFF55" />
+          <Rectangle Grid.Column="1" Height="3" Fill="#FFB000" Margin="6,0,0,0" />
+          <Rectangle Grid.Column="2" Height="3" Fill="#FF2D2D" Margin="6,0,0,0" />
+        </Grid>
+      </StackPanel>
+
+      <Grid Grid.Column="2" Width="54" Margin="10,0,0,0">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="SYNC"
+                   Foreground="#B7AFA892"
+                   FontSize="8"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Right" />
+        <TextBlock Grid.Row="1"
+                   Text="100"
+                   Foreground="#7CFF55"
+                   FontSize="18"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Right" />
+        <Rectangle Grid.Row="2" Height="24" Stroke="#7738DDF2" StrokeThickness="1" Margin="0,5,0,0" />
+      </Grid>
+    </Grid>
+
+    <Grid Grid.Row="2" Margin="0,10,0,0">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+      <Border BorderBrush="#88FFB000" BorderThickness="1" Background="#221D1000" Padding="6,3">
+        <TextBlock Text="DATE"
+                   Foreground="#FFB000"
+                   FontSize="9"
+                   FontWeight="Bold" />
+      </Border>
+      <TextBlock Grid.Column="1"
+                 Text="{Binding Date}"
+                 Foreground="#B7AFA892"
+                 FontSize="12"
+                 FontWeight="SemiBold"
+                 Margin="8,2,0,0" />
+      <TextBlock Grid.Column="2"
+                 Text="OK"
+                 Foreground="#7CFF55"
+                 FontSize="9"
+                 FontWeight="Bold"
+                 VerticalAlignment="Center" />
+    </Grid>
+  </Grid>
+</UserControl>
