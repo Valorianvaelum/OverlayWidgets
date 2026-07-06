@@ -130,9 +130,8 @@ public partial class MainWindow : Window
         e.Handled = true;
     }
 
-    private void ResizeThumb_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    private void ResizeThumb_DragStarted(object sender, DragStartedEventArgs e)
     {
-        // Prevent the resize handle from starting the normal widget move gesture.
         _dragStart = null;
         _draggedWidget = null;
         e.Handled = true;
