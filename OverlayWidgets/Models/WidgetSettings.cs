@@ -4,7 +4,7 @@ public sealed class WidgetSettings
 {
     public string Id { get; set; } = Guid.NewGuid().ToString("N");
     public string Type { get; set; } = string.Empty;
-    public bool IsEnabled { get; set; } = true;
+    public bool? IsEnabled { get; set; } = true;
     public double Left { get; set; }
     public double Top { get; set; }
     public double Width { get; set; } = 240;
