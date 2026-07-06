@@ -8,104 +8,84 @@
       <RowDefinition Height="Auto" />
     </Grid.RowDefinitions>
 
-    <Grid Margin="0,0,0,8">
+    <Grid Margin="0,0,0,9">
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="Auto" />
         <ColumnDefinition Width="*" />
         <ColumnDefinition Width="Auto" />
       </Grid.ColumnDefinitions>
       <StackPanel Orientation="Horizontal">
-        <Rectangle Width="4"
-                   Height="22"
-                   Fill="#FF4FD8" />
-        <Rectangle Width="2"
-                   Height="22"
-                   Fill="#B45CFF"
-                   Margin="3,0,0,0" />
+        <Rectangle Width="5" Height="24" Fill="#FF2D2D" />
+        <Rectangle Width="4" Height="24" Fill="#FFB000" Margin="3,0,0,0" />
+        <Rectangle Width="2" Height="24" Fill="#7CFF55" Margin="3,0,0,0" />
       </StackPanel>
-      <StackPanel Grid.Column="1"
-                  Orientation="Horizontal"
-                  Margin="9,0,0,0"
-                  VerticalAlignment="Center">
-        <TextBlock Text="SIGNAL"
-                   Foreground="#FF4FD8"
-                   FontSize="10"
+      <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="10,0,0,0" VerticalAlignment="Center">
+        <TextBlock Text="AUDIO CHANNEL"
+                   Foreground="#FFB000"
+                   FontFamily="Bahnschrift Condensed, Bahnschrift, Segoe UI"
+                   FontSize="13"
                    FontWeight="Bold" />
-        <TextBlock Text=" // AUDIO MODULE"
-                   Foreground="#9AD6B8D8"
+        <TextBlock Text=" // SUB MONITOR"
+                   Foreground="#B7AFA892"
+                   FontFamily="Bahnschrift, Segoe UI"
                    FontSize="10"
                    FontWeight="Bold" />
       </StackPanel>
-      <Border Grid.Column="2"
-              BorderBrush="#99FF4FD8"
-              BorderThickness="1"
-              CornerRadius="2"
-              Background="#3324072E"
-              Padding="7,2">
+      <Border Grid.Column="2" BorderBrush="#FF7CFF55" BorderThickness="1" Background="#2211220A" Padding="7,2" VerticalAlignment="Top">
         <TextBlock Text="{Binding Status}"
-                   Foreground="#B6FF5C"
+                   Foreground="#7CFF55"
                    FontSize="10"
                    FontWeight="Bold" />
       </Border>
     </Grid>
 
-    <Grid Grid.Row="1"
-          VerticalAlignment="Center">
+    <Grid Grid.Row="1" VerticalAlignment="Center">
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="*" />
         <ColumnDefinition Width="Auto" />
       </Grid.ColumnDefinitions>
       <StackPanel>
         <TextBlock Text="{Binding Title}"
-                   Foreground="#FFF7FF"
+                   Foreground="#FFF7EFD8"
+                   FontFamily="Bahnschrift, Segoe UI"
                    FontSize="20"
                    FontWeight="Bold"
                    TextTrimming="CharacterEllipsis" />
         <TextBlock Text="{Binding Subtitle}"
-                   Foreground="#D6B8D8"
+                   Foreground="#B7AFA892"
+                   FontFamily="Bahnschrift, Segoe UI"
                    FontSize="13"
                    FontWeight="SemiBold"
                    Margin="0,5,0,0"
                    TextTrimming="CharacterEllipsis" />
       </StackPanel>
-      <StackPanel Grid.Column="1"
-                  Margin="12,0,0,0"
-                  VerticalAlignment="Center">
+      <Grid Grid.Column="1" Width="54" Margin="12,0,0,0">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
         <TextBlock Text="LINK"
-                   Foreground="#8E789A"
+                   Foreground="#B7AFA892"
                    FontSize="8"
                    FontWeight="Bold"
                    HorizontalAlignment="Right" />
-        <TextBlock Text="OK"
-                   Foreground="#B6FF5C"
-                   FontSize="14"
-                   FontWeight="Bold"
-                   HorizontalAlignment="Right" />
-      </StackPanel>
+        <TextBlock Grid.Row="1" Text="OK" Foreground="#7CFF55" FontSize="16" FontWeight="Bold" HorizontalAlignment="Right" />
+        <Rectangle Grid.Row="2" Height="24" Stroke="#7738DDF2" StrokeThickness="1" Margin="0,5,0,0" />
+      </Grid>
     </Grid>
 
-    <Grid Grid.Row="2"
-          Margin="0,10,0,0">
+    <Grid Grid.Row="2" Margin="0,10,0,0">
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="1.7*" />
-        <ColumnDefinition Width="1.1*" />
-        <ColumnDefinition Width="0.7*" />
-        <ColumnDefinition Width="0.35*" />
+        <ColumnDefinition Width="1.8*" />
+        <ColumnDefinition Width="1.2*" />
+        <ColumnDefinition Width="0.8*" />
+        <ColumnDefinition Width="0.5*" />
       </Grid.ColumnDefinitions>
-      <Rectangle Height="3"
-                 Fill="#FF4FD8" />
-      <Rectangle Grid.Column="1"
-                 Height="3"
-                 Margin="6,0,0,0"
-                 Fill="#B45CFF" />
-      <Rectangle Grid.Column="2"
-                 Height="3"
-                 Margin="6,0,0,0"
-                 Fill="#4DE7FF" />
-      <Rectangle Grid.Column="3"
-                 Height="3"
-                 Margin="6,0,0,0"
-                 Fill="#FFB84D" />
+      <Rectangle Height="3" Fill="#7CFF55" />
+      <Rectangle Grid.Column="1" Height="3" Margin="6,0,0,0" Fill="#FFB000" />
+      <Rectangle Grid.Column="2" Height="3" Margin="6,0,0,0" Fill="#FF2D2D" />
+      <Rectangle Grid.Column="3" Height="3" Margin="6,0,0,0" Fill="#38DDF2" />
     </Grid>
   </Grid>
 </UserControl>
