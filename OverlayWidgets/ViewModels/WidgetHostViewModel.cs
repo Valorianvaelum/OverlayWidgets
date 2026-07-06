@@ -65,6 +65,7 @@ public sealed class WidgetHostViewModel : ObservableObject
         {
             Id = Id,
             Type = Type,
+            IsEnabled = true,
             Left = Left,
             Top = Top,
             Width = Width,
