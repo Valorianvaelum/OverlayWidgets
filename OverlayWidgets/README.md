@@ -47,6 +47,28 @@ dotnet run
 
 Si `settings.json` no existe, esta incompleto o no contiene widgets nuevos agregados por la app, se completa con valores por defecto. Si esta corrupto, se crea un backup con timestamp y se restaura una configuracion segura.
 
+## Blindaje actual del MVP
+
+- Overlay preparado para cubrir el escritorio virtual completo en configuraciones multi-monitor.
+- Estilos Win32 del overlay aplicados con una ruta compatible con procesos de 32 y 64 bits.
+- Registro defensivo del atajo global `Ctrl+Shift+O`.
+- Desregistro del atajo global al cerrar la app.
+- Hook Win32 removido durante el cierre de la ventana.
+- Logging local tolerante a errores.
+- Widget multimedia tolerante a sesiones inexistentes, metadatos incompletos y errores de refresco.
+- Proteccion para que los widgets queden dentro del area visible del overlay.
+
+## Validacion automatica
+
+El repositorio incluye un workflow de GitHub Actions en `.github/workflows/dotnet-desktop.yml` que ejecuta:
+
+```powershell
+dotnet restore OverlayWidgets/OverlayWidgets.csproj
+dotnet build OverlayWidgets/OverlayWidgets.csproj --configuration Release --no-restore
+```
+
+El workflow corre en `windows-latest` porque la aplicacion es WPF.
+
 ## Estructura
 
 - `Views/`: ventanas y controles WPF.
