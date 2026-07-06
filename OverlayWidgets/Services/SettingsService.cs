@@ -123,7 +123,7 @@ public sealed class SettingsService : ISettingsService
         {
             Id = string.IsNullOrWhiteSpace(widget.Id) ? Guid.NewGuid().ToString("N") : widget.Id,
             Type = string.IsNullOrWhiteSpace(widget.Type) ? fallback.Type : widget.Type,
-            IsEnabled = widget.IsEnabled,
+            IsEnabled = widget.IsEnabled ?? fallback.IsEnabled ?? true,
             Left = SanitizeNumber(widget.Left, fallback.Left),
             Top = SanitizeNumber(widget.Top, fallback.Top),
             Width = Math.Clamp(SanitizeNumber(widget.Width, fallback.Width), 120, 900),
