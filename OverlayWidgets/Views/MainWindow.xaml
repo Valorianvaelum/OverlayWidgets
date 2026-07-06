@@ -87,8 +87,8 @@
                            FontSize="11" />
               </Border>
               <Thumb Style="{StaticResource ResizeThumbStyle}"
+                     DragStarted="ResizeThumb_DragStarted"
                      DragDelta="ResizeThumb_DragDelta"
-                     PreviewMouseLeftButtonDown="ResizeThumb_PreviewMouseLeftButtonDown"
                      Visibility="{Binding IsEditMode, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Grid>
           </Border>
