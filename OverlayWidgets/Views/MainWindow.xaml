@@ -6,45 +6,189 @@
         Width="1280"
         Height="720">
   <Window.Resources>
-    <Style x:Key="OverlayWidgetChrome" TargetType="Border">
-      <Setter Property="CornerRadius" Value="10" />
-      <Setter Property="Background" Value="#CC151A20" />
-      <Setter Property="BorderBrush" Value="#66FFFFFF" />
+    <SolidColorBrush x:Key="HudTextPrimary" Color="#F8FBFF" />
+    <SolidColorBrush x:Key="HudTextSecondary" Color="#A7B8CA" />
+    <SolidColorBrush x:Key="HudCyan" Color="#22D3EE" />
+    <SolidColorBrush x:Key="HudMagenta" Color="#F472B6" />
+    <SolidColorBrush x:Key="HudAmber" Color="#F59E0B" />
+    <SolidColorBrush x:Key="HudGreen" Color="#7CFF6B" />
+    <SolidColorBrush x:Key="HudPanelDark" Color="#EA050913" />
+    <SolidColorBrush x:Key="HudPanelMid" Color="#DD0B1422" />
+    <SolidColorBrush x:Key="HudBorderSoft" Color="#6622D3EE" />
+
+    <LinearGradientBrush x:Key="HudPanelGradient" StartPoint="0,0" EndPoint="1,1">
+      <GradientStop Color="#F3060B14" Offset="0" />
+      <GradientStop Color="#DC0B1F2F" Offset="0.48" />
+      <GradientStop Color="#D9140A1E" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="HudWidgetGradient" StartPoint="0,0" EndPoint="1,1">
+      <GradientStop Color="#E6080C14" Offset="0" />
+      <GradientStop Color="#CC101827" Offset="0.56" />
+      <GradientStop Color="#C20B1020" Offset="1" />
+    </LinearGradientBrush>
+
+    <Style x:Key="HudButton" TargetType="Button">
+      <Setter Property="Foreground" Value="{StaticResource HudTextPrimary}" />
+      <Setter Property="Background" Value="#3312E9F3" />
+      <Setter Property="BorderBrush" Value="#AA22D3EE" />
       <Setter Property="BorderThickness" Value="1" />
-      <Setter Property="Padding" Value="12" />
+      <Setter Property="Padding" Value="14,6" />
+      <Setter Property="FontSize" Value="11" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+      <Setter Property="Cursor" Value="Hand" />
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Button">
+            <Border x:Name="Root"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="4">
+              <Grid>
+                <Rectangle Width="3"
+                           HorizontalAlignment="Left"
+                           Fill="{StaticResource HudMagenta}" />
+                <ContentPresenter HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Margin="8,0" />
+              </Grid>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="Root" Property="Background" Value="#5512E9F3" />
+                <Setter TargetName="Root" Property="BorderBrush" Value="#FF22D3EE" />
+              </Trigger>
+              <Trigger Property="IsPressed" Value="True">
+                <Setter TargetName="Root" Property="Background" Value="#6622D3EE" />
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <Style x:Key="HudCheckBox" TargetType="CheckBox">
+      <Setter Property="Foreground" Value="{StaticResource HudTextPrimary}" />
+      <Setter Property="FontSize" Value="12" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+      <Setter Property="Cursor" Value="Hand" />
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="CheckBox">
+            <Border x:Name="Root"
+                    Background="#26060B14"
+                    BorderBrush="#5522D3EE"
+                    BorderThickness="1"
+                    CornerRadius="5"
+                    Padding="8,6"
+                    Margin="0,4,0,0">
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="36" />
+                  <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Border x:Name="Indicator"
+                        Width="28"
+                        Height="14"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Background="#22000000"
+                        BorderBrush="#88A7B8CA"
+                        BorderThickness="1"
+                        CornerRadius="7">
+                  <Ellipse x:Name="Dot"
+                           Width="8"
+                           Height="8"
+                           HorizontalAlignment="Left"
+                           Margin="3,0,0,0"
+                           Fill="#FFA7B8CA" />
+                </Border>
+                <ContentPresenter Grid.Column="1"
+                                  VerticalAlignment="Center"
+                                  RecognizesAccessKey="True" />
+              </Grid>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsChecked" Value="True">
+                <Setter TargetName="Root" Property="BorderBrush" Value="#DD22D3EE" />
+                <Setter TargetName="Root" Property="Background" Value="#3312E9F3" />
+                <Setter TargetName="Indicator" Property="BorderBrush" Value="#FF22D3EE" />
+                <Setter TargetName="Indicator" Property="Background" Value="#4422D3EE" />
+                <Setter TargetName="Dot" Property="HorizontalAlignment" Value="Right" />
+                <Setter TargetName="Dot" Property="Margin" Value="0,0,3,0" />
+                <Setter TargetName="Dot" Property="Fill" Value="#FF7CFF6B" />
+              </Trigger>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="Root" Property="BorderBrush" Value="#FF22D3EE" />
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <Style x:Key="OverlayWidgetChrome" TargetType="Border">
+      <Setter Property="CornerRadius" Value="12" />
+      <Setter Property="Background" Value="{StaticResource HudWidgetGradient}" />
+      <Setter Property="BorderBrush" Value="#AA22D3EE" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="Padding" Value="14" />
       <Setter Property="Effect">
         <Setter.Value>
-          <DropShadowEffect BlurRadius="16" ShadowDepth="2" Opacity="0.35" />
+          <DropShadowEffect Color="#22D3EE" BlurRadius="22" ShadowDepth="0" Opacity="0.28" />
         </Setter.Value>
       </Setter>
     </Style>
 
     <Style x:Key="EditPanelChrome" TargetType="Border">
-      <Setter Property="Padding" Value="10,8" />
-      <Setter Property="CornerRadius" Value="8" />
-      <Setter Property="Background" Value="#E51F2937" />
+      <Setter Property="Padding" Value="12,10" />
+      <Setter Property="CornerRadius" Value="10" />
+      <Setter Property="Background" Value="{StaticResource HudPanelGradient}" />
+      <Setter Property="BorderBrush" Value="#9922D3EE" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="Effect">
+        <Setter.Value>
+          <DropShadowEffect Color="#22D3EE" BlurRadius="18" ShadowDepth="0" Opacity="0.24" />
+        </Setter.Value>
+      </Setter>
     </Style>
 
     <Style x:Key="ResizeThumbStyle" TargetType="Thumb">
-      <Setter Property="Width" Value="18" />
-      <Setter Property="Height" Value="18" />
+      <Setter Property="Width" Value="22" />
+      <Setter Property="Height" Value="22" />
       <Setter Property="HorizontalAlignment" Value="Right" />
       <Setter Property="VerticalAlignment" Value="Bottom" />
       <Setter Property="Cursor" Value="SizeNWSE" />
       <Setter Property="Template">
         <Setter.Value>
           <ControlTemplate TargetType="Thumb">
-            <Border Background="#B81F2937"
-                    BorderBrush="#AAFFFFFF"
+            <Border x:Name="Root"
+                    Background="#D4140A1E"
+                    BorderBrush="#FFF472B6"
                     BorderThickness="1"
-                    CornerRadius="6">
-              <TextBlock Text="↘"
+                    CornerRadius="7">
+              <Grid>
+                <TextBlock Text="↘"
                          HorizontalAlignment="Center"
                          VerticalAlignment="Center"
                          Foreground="White"
-                         FontSize="10"
-                         FontWeight="SemiBold" />
+                         FontSize="11"
+                         FontWeight="Bold" />
+                <Rectangle Height="2"
+                           Width="11"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Bottom"
+                           Margin="0,0,4,4"
+                           Fill="{StaticResource HudCyan}" />
+              </Grid>
             </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="Root" Property="Background" Value="#F02A0F35" />
+                <Setter TargetName="Root" Property="BorderBrush" Value="#FFFFFFFF" />
+              </Trigger>
+            </ControlTemplate.Triggers>
           </ControlTemplate>
         </Setter.Value>
       </Setter>
@@ -73,20 +217,60 @@
                   MouseMove="Widget_MouseMove"
                   MouseLeftButtonUp="Widget_MouseLeftButtonUp">
             <Grid>
-              <ContentControl Content="{Binding Content}" />
-              <Border HorizontalAlignment="Stretch"
-                      VerticalAlignment="Top"
-                      Height="24"
-                      Margin="-8,-8,-8,0"
-                      Background="#33000000"
-                      Visibility="{Binding IsEditMode, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <TextBlock Text="{Binding DisplayName}"
-                           Margin="8,0"
-                           VerticalAlignment="Center"
-                           Foreground="#E5FFFFFF"
-                           FontSize="11" />
-              </Border>
-              <Thumb Style="{StaticResource ResizeThumbStyle}"
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+              </Grid.RowDefinitions>
+
+              <Grid Visibility="{Binding IsEditMode, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Margin="-6,-6,-6,8">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" />
+                  <ColumnDefinition Width="*" />
+                  <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Rectangle Width="4"
+                           Height="18"
+                           Fill="{StaticResource HudMagenta}"
+                           RadiusX="2"
+                           RadiusY="2" />
+                <StackPanel Grid.Column="1"
+                            Orientation="Horizontal"
+                            Margin="8,0,0,0"
+                            VerticalAlignment="Center">
+                  <TextBlock Text="WIDGET"
+                             Foreground="{StaticResource HudCyan}"
+                             FontSize="9"
+                             FontWeight="Bold" />
+                  <TextBlock Text=" // "
+                             Foreground="#66FFFFFF"
+                             FontSize="9"
+                             FontWeight="Bold" />
+                  <TextBlock Text="{Binding DisplayName}"
+                             Foreground="{StaticResource HudTextPrimary}"
+                             FontSize="11"
+                             FontWeight="SemiBold" />
+                </StackPanel>
+                <TextBlock Grid.Column="2"
+                           Text="DRAG / RESIZE"
+                           Foreground="{StaticResource HudAmber}"
+                           FontSize="9"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center" />
+              </Grid>
+
+              <Grid Grid.Row="1">
+                <ContentControl Content="{Binding Content}" />
+                <Rectangle Height="1"
+                           VerticalAlignment="Top"
+                           Fill="#4422D3EE" />
+                <Rectangle Width="1"
+                           HorizontalAlignment="Right"
+                           Fill="#33F472B6" />
+              </Grid>
+
+              <Thumb Grid.RowSpan="2"
+                     Style="{StaticResource ResizeThumbStyle}"
                      DragStarted="ResizeThumb_DragStarted"
                      DragDelta="ResizeThumb_DragDelta"
                      Visibility="{Binding IsEditMode, Converter={StaticResource BooleanToVisibilityConverter}}" />
@@ -99,63 +283,114 @@
     <Border Style="{StaticResource EditPanelChrome}"
             HorizontalAlignment="Left"
             VerticalAlignment="Bottom"
-            Margin="16"
+            Margin="18"
+            MinWidth="430"
             Visibility="{Binding IsEditMode, Converter={StaticResource BooleanToVisibilityConverter}}">
-      <StackPanel>
-        <StackPanel Orientation="Horizontal">
-          <Ellipse Width="8"
-                   Height="8"
-                   Fill="#22C55E"
-                   VerticalAlignment="Center"
-                   Margin="0,0,8,0" />
-          <TextBlock Text="Modo edicion activo"
-                     Foreground="White"
-                     FontWeight="SemiBold"
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Border Width="44"
+                Height="44"
+                Background="#2412E9F3"
+                BorderBrush="{StaticResource HudCyan}"
+                BorderThickness="1"
+                CornerRadius="8"
+                Margin="0,0,12,0">
+          <Grid>
+            <Ellipse Width="12"
+                     Height="12"
+                     Fill="{StaticResource HudGreen}"
+                     HorizontalAlignment="Center"
                      VerticalAlignment="Center" />
-          <Button Content="Bloquear"
-                  Margin="12,0,0,0"
-                  Padding="10,4"
-                  Command="{Binding ToggleEditModeCommand}" />
+            <Ellipse Width="28"
+                     Height="28"
+                     Stroke="{StaticResource HudCyan}"
+                     StrokeThickness="1"
+                     Opacity="0.55" />
+          </Grid>
+        </Border>
+        <StackPanel Grid.Column="1"
+                    VerticalAlignment="Center">
+          <StackPanel Orientation="Horizontal">
+            <TextBlock Text="OVERLAY CONTROL"
+                       Foreground="{StaticResource HudCyan}"
+                       FontWeight="Bold"
+                       FontSize="11" />
+            <TextBlock Text=" // EDIT MODE ACTIVE"
+                       Foreground="{StaticResource HudTextPrimary}"
+                       FontWeight="Bold"
+                       FontSize="11" />
+          </StackPanel>
+          <TextBlock Text="Drag para posicionar · esquina ↘ para redimensionar · Ctrl+Shift+O recupera edicion"
+                     Foreground="{StaticResource HudTextSecondary}"
+                     FontSize="11"
+                     Margin="0,5,0,0" />
+          <TextBlock Text="Atajo global no disponible; otra app puede estar usandolo."
+                     Foreground="#FCA5A5"
+                     FontSize="11"
+                     Margin="0,4,0,0"
+                     Visibility="Collapsed"
+                     x:Name="HotkeyUnavailableText" />
         </StackPanel>
-        <TextBlock Text="Arrastra widgets para ubicarlos. Usa la esquina ↘ para cambiar su tamano."
-                   Foreground="#CBD5E1"
-                   FontSize="11"
-                   Margin="16,6,0,0" />
-        <TextBlock Text="Ctrl+Shift+O vuelve a editar aunque el overlay este bloqueado."
-                   Foreground="#CBD5E1"
-                   FontSize="11"
-                   Margin="16,4,0,0" />
-        <TextBlock Text="Atajo global no disponible; otra app puede estar usandolo."
-                   Foreground="#FCA5A5"
-                   FontSize="11"
-                   Margin="16,4,0,0"
-                   Visibility="Collapsed"
-                   x:Name="HotkeyUnavailableText" />
-      </StackPanel>
+        <Button Grid.Column="2"
+                Style="{StaticResource HudButton}"
+                Content="BLOQUEAR HUD"
+                Margin="14,0,0,0"
+                Command="{Binding ToggleEditModeCommand}" />
+      </Grid>
     </Border>
 
     <Border Style="{StaticResource EditPanelChrome}"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
-            Margin="16"
-            Width="230"
+            Margin="18"
+            Width="260"
             Visibility="{Binding IsEditMode, Converter={StaticResource BooleanToVisibilityConverter}}">
       <StackPanel>
-        <TextBlock Text="Widgets"
-                   Foreground="White"
-                   FontWeight="SemiBold" />
-        <TextBlock Text="Activa o desactiva lo que queres ver."
-                   Foreground="#CBD5E1"
+        <Grid Margin="0,0,0,8">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
+          <StackPanel>
+            <TextBlock Text="LOADOUT"
+                       Foreground="{StaticResource HudMagenta}"
+                       FontSize="10"
+                       FontWeight="Bold" />
+            <TextBlock Text="WIDGETS ACTIVOS"
+                       Foreground="{StaticResource HudTextPrimary}"
+                       FontSize="16"
+                       FontWeight="Bold" />
+          </StackPanel>
+          <Border Grid.Column="1"
+                  Width="34"
+                  Height="24"
+                  BorderBrush="{StaticResource HudAmber}"
+                  BorderThickness="1"
+                  CornerRadius="5"
+                  Background="#22F59E0B">
+            <TextBlock Text="SYS"
+                       Foreground="{StaticResource HudAmber}"
+                       FontSize="9"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+          </Border>
+        </Grid>
+        <TextBlock Text="Activa los modulos que queres mantener en pantalla."
+                   Foreground="{StaticResource HudTextSecondary}"
                    FontSize="11"
-                   Margin="0,4,0,8"
+                   Margin="0,0,0,8"
                    TextWrapping="Wrap" />
         <ItemsControl ItemsSource="{Binding WidgetOptions}">
           <ItemsControl.ItemTemplate>
             <DataTemplate DataType="{x:Type viewModels:WidgetOptionViewModel}">
               <CheckBox Content="{Binding DisplayName}"
-                        IsChecked="{Binding IsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                        Foreground="White"
-                        Margin="0,4,0,0" />
+                        Style="{StaticResource HudCheckBox}"
+                        IsChecked="{Binding IsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </DataTemplate>
           </ItemsControl.ItemTemplate>
         </ItemsControl>
