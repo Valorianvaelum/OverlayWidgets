@@ -34,10 +34,11 @@ dotnet run
 
 - La app inicia en modo edicion por defecto.
 - En modo edicion los widgets pueden moverse arrastrandolos.
+- El panel `Widgets` permite activar o desactivar widgets disponibles.
 - El boton `Bloquear` cambia a modo normal: la ventana queda arriba y evita capturar clics.
 - `Ctrl+Shift+O` alterna entre modo edicion y modo normal aunque el overlay este bloqueado.
 - Si otra aplicacion ya usa `Ctrl+Shift+O`, OverlayWidgets sigue funcionando y muestra un aviso en modo edicion.
-- Al cerrar, se guarda la posicion y tamano de cada widget en `%LOCALAPPDATA%\OverlayWidgets\settings.json`.
+- Al cerrar, se guarda la posicion, tamano y estado activo/inactivo de cada widget en `%LOCALAPPDATA%\OverlayWidgets\settings.json`.
 
 ## Archivos locales
 
@@ -46,6 +47,13 @@ dotnet run
 - Logs: `%LOCALAPPDATA%\OverlayWidgets\logs\yyyy-MM-dd.log`
 
 Si `settings.json` no existe, esta incompleto o no contiene widgets nuevos agregados por la app, se completa con valores por defecto. Si esta corrupto, se crea un backup con timestamp y se restaura una configuracion segura.
+
+## Capa 2: selector de widgets
+
+- Cada widget disponible se muestra como opcion en el panel `Widgets` durante el modo edicion.
+- Al desactivar un widget, desaparece del overlay pero conserva su ultima posicion y tamano conocidos.
+- Al reactivarlo, vuelve a aparecer usando su configuracion guardada.
+- El estado activo/inactivo se persiste en `settings.json` mediante la propiedad `isEnabled`.
 
 ## Blindaje actual del MVP
 
