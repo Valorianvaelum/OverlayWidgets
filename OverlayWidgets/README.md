@@ -34,6 +34,7 @@ dotnet run
 
 - La app inicia en modo edicion por defecto.
 - En modo edicion los widgets pueden moverse arrastrandolos.
+- En modo edicion los widgets pueden redimensionarse desde la esquina inferior derecha `↘`.
 - El panel `Widgets` permite activar o desactivar widgets disponibles.
 - El boton `Bloquear` cambia a modo normal: la ventana queda arriba y evita capturar clics.
 - `Ctrl+Shift+O` alterna entre modo edicion y modo normal aunque el overlay este bloqueado.
@@ -47,6 +48,14 @@ dotnet run
 - Logs: `%LOCALAPPDATA%\OverlayWidgets\logs\yyyy-MM-dd.log`
 
 Si `settings.json` no existe, esta incompleto o no contiene widgets nuevos agregados por la app, se completa con valores por defecto. Si esta corrupto, se crea un backup con timestamp y se restaura una configuracion segura.
+
+## Capa 3: resize interactivo
+
+- Cada widget muestra un handle `↘` en la esquina inferior derecha durante el modo edicion.
+- El handle permite cambiar ancho y alto arrastrando con el mouse.
+- El tamano queda limitado por los minimos definidos en el host del widget.
+- El widget se mantiene dentro del area visible del overlay.
+- El ancho y alto se guardan en `settings.json` al cerrar la app.
 
 ## Capa 2: selector de widgets
 
