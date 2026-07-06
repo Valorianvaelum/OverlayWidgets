@@ -24,6 +24,31 @@
       <Setter Property="CornerRadius" Value="8" />
       <Setter Property="Background" Value="#E51F2937" />
     </Style>
+
+    <Style x:Key="ResizeThumbStyle" TargetType="Thumb">
+      <Setter Property="Width" Value="18" />
+      <Setter Property="Height" Value="18" />
+      <Setter Property="HorizontalAlignment" Value="Right" />
+      <Setter Property="VerticalAlignment" Value="Bottom" />
+      <Setter Property="Cursor" Value="SizeNWSE" />
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Thumb">
+            <Border Background="#B81F2937"
+                    BorderBrush="#AAFFFFFF"
+                    BorderThickness="1"
+                    CornerRadius="6">
+              <TextBlock Text="↘"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         Foreground="White"
+                         FontSize="10"
+                         FontWeight="SemiBold" />
+            </Border>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
   </Window.Resources>
 
   <Grid Background="Transparent">
@@ -61,6 +86,10 @@
                            Foreground="#E5FFFFFF"
                            FontSize="11" />
               </Border>
+              <Thumb Style="{StaticResource ResizeThumbStyle}"
+                     DragStarted="ResizeThumb_DragStarted"
+                     DragDelta="ResizeThumb_DragDelta"
+                     Visibility="{Binding IsEditMode, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Grid>
           </Border>
         </DataTemplate>
@@ -88,10 +117,14 @@
                   Padding="10,4"
                   Command="{Binding ToggleEditModeCommand}" />
         </StackPanel>
-        <TextBlock Text="Arrastra widgets para ubicarlos. Ctrl+Shift+O vuelve a editar."
+        <TextBlock Text="Arrastra widgets para ubicarlos. Usa la esquina ↘ para cambiar su tamano."
                    Foreground="#CBD5E1"
                    FontSize="11"
                    Margin="16,6,0,0" />
+        <TextBlock Text="Ctrl+Shift+O vuelve a editar aunque el overlay este bloqueado."
+                   Foreground="#CBD5E1"
+                   FontSize="11"
+                   Margin="16,4,0,0" />
         <TextBlock Text="Atajo global no disponible; otra app puede estar usandolo."
                    Foreground="#FCA5A5"
                    FontSize="11"
