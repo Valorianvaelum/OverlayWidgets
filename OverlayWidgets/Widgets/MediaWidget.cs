@@ -8,10 +8,12 @@ namespace OverlayWidgets.Widgets;
 public sealed class MediaWidget : IWidget
 {
     private readonly IMediaSessionService _mediaSessionService;
+    private readonly ILoggerService _logger;
 
-    public MediaWidget(IMediaSessionService mediaSessionService)
+    public MediaWidget(IMediaSessionService mediaSessionService, ILoggerService logger)
     {
         _mediaSessionService = mediaSessionService;
+        _logger = logger;
     }
 
     public string Type => WidgetTypes.Media;
@@ -21,7 +23,7 @@ public sealed class MediaWidget : IWidget
     {
         return new MediaWidgetView
         {
-            DataContext = new MediaWidgetViewModel(_mediaSessionService)
+            DataContext = new MediaWidgetViewModel(_mediaSessionService, _logger)
         };
     }
 }
