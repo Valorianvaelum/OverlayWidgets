@@ -1,6 +1,6 @@
 # OverlayWidgets
 
-Aplicacion nativa para Windows hecha con C# y WPF. Muestra widgets flotantes sobre el escritorio u otras ventanas, con modo edicion para moverlos y persistencia local en JSON.
+Aplicacion nativa para Windows hecha con C# y WPF. Muestra widgets flotantes sobre el escritorio u otras ventanas, con modo edicion para moverlos, redimensionarlos y persistir su configuracion local en JSON.
 
 ## Requisitos
 
@@ -36,7 +36,7 @@ dotnet run
 - En modo edicion los widgets pueden moverse arrastrandolos.
 - En modo edicion los widgets pueden redimensionarse desde la esquina inferior derecha `↘`.
 - El panel `Widgets` permite activar o desactivar widgets disponibles.
-- El boton `Bloquear` cambia a modo normal: la ventana queda arriba y evita capturar clics.
+- El boton `BLOQUEAR HUD` cambia a modo normal: la ventana queda arriba y evita capturar clics.
 - `Ctrl+Shift+O` alterna entre modo edicion y modo normal aunque el overlay este bloqueado.
 - Si otra aplicacion ya usa `Ctrl+Shift+O`, OverlayWidgets sigue funcionando y muestra un aviso en modo edicion.
 - Al cerrar, se guarda la posicion, tamano y estado activo/inactivo de cada widget en `%LOCALAPPDATA%\OverlayWidgets\settings.json`.
@@ -48,6 +48,16 @@ dotnet run
 - Logs: `%LOCALAPPDATA%\OverlayWidgets\logs\yyyy-MM-dd.log`
 
 Si `settings.json` no existe, esta incompleto o no contiene widgets nuevos agregados por la app, se completa con valores por defecto. Si esta corrupto, se crea un backup con timestamp y se restaura una configuracion segura.
+
+## Capa 4: tema Tactical Mecha HUD
+
+- Rediseño visual del overlay con estetica HUD futurista inspirada en interfaces tacticas, mecha y shooters sci-fi, sin copiar interfaces propietarias.
+- Nuevo chrome de widgets con fondo oscuro, bordes neón, acentos cian/magenta/ambar y encabezado tecnico.
+- Rediseño del panel de control de modo edicion como consola HUD.
+- Rediseño del selector de widgets como panel `LOADOUT` con toggles personalizados.
+- Rediseño visual de `ClockWidget` como panel cronometro/telemetria.
+- Rediseño visual de `MediaWidget` como modulo de sesion multimedia.
+- Mejor integracion visual del handle `↘` de resize dentro del lenguaje HUD.
 
 ## Capa 3: resize interactivo
 
