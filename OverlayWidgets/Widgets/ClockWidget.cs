@@ -11,7 +11,7 @@ public sealed class ClockWidget : IWidget
 
     public FrameworkElement CreateView()
     {
-        return new ClockWidgetView
+        return new TimeMonitorView
         {
             DataContext = new ClockWidgetViewModel()
         };
