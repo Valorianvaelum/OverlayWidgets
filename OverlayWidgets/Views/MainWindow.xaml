@@ -18,6 +18,12 @@
         </Setter.Value>
       </Setter>
     </Style>
+
+    <Style x:Key="EditPanelChrome" TargetType="Border">
+      <Setter Property="Padding" Value="10,8" />
+      <Setter Property="CornerRadius" Value="8" />
+      <Setter Property="Background" Value="#E51F2937" />
+    </Style>
   </Window.Resources>
 
   <Grid Background="Transparent">
@@ -61,12 +67,10 @@
       </ItemsControl.ItemTemplate>
     </ItemsControl>
 
-    <Border HorizontalAlignment="Left"
+    <Border Style="{StaticResource EditPanelChrome}"
+            HorizontalAlignment="Left"
             VerticalAlignment="Bottom"
             Margin="16"
-            Padding="10,8"
-            CornerRadius="8"
-            Background="#E51F2937"
             Visibility="{Binding IsEditMode, Converter={StaticResource BooleanToVisibilityConverter}}">
       <StackPanel>
         <StackPanel Orientation="Horizontal">
@@ -94,6 +98,34 @@
                    Margin="16,4,0,0"
                    Visibility="Collapsed"
                    x:Name="HotkeyUnavailableText" />
+      </StackPanel>
+    </Border>
+
+    <Border Style="{StaticResource EditPanelChrome}"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Margin="16"
+            Width="230"
+            Visibility="{Binding IsEditMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+      <StackPanel>
+        <TextBlock Text="Widgets"
+                   Foreground="White"
+                   FontWeight="SemiBold" />
+        <TextBlock Text="Activa o desactiva lo que queres ver."
+                   Foreground="#CBD5E1"
+                   FontSize="11"
+                   Margin="0,4,0,8"
+                   TextWrapping="Wrap" />
+        <ItemsControl ItemsSource="{Binding WidgetOptions}">
+          <ItemsControl.ItemTemplate>
+            <DataTemplate DataType="{x:Type viewModels:WidgetOptionViewModel}">
+              <CheckBox Content="{Binding DisplayName}"
+                        IsChecked="{Binding IsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Foreground="White"
+                        Margin="0,4,0,0" />
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
       </StackPanel>
     </Border>
   </Grid>
