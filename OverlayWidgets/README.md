@@ -35,8 +35,8 @@ dotnet run
 - La app inicia en modo edicion por defecto.
 - En modo edicion los widgets pueden moverse arrastrandolos.
 - En modo edicion los widgets pueden redimensionarse desde la esquina inferior derecha `↘`.
-- El panel `Widgets` permite activar o desactivar widgets disponibles.
-- El boton `BLOQUEAR HUD` cambia a modo normal: la ventana queda arriba y evita capturar clics.
+- El panel de canales permite activar o desactivar widgets disponibles.
+- El boton `SECURE DISPLAY` cambia a modo normal: la ventana queda arriba y evita capturar clics.
 - `Ctrl+Shift+O` alterna entre modo edicion y modo normal aunque el overlay este bloqueado.
 - Si otra aplicacion ya usa `Ctrl+Shift+O`, OverlayWidgets sigue funcionando y muestra un aviso en modo edicion.
 - Al cerrar, se guarda la posicion, tamano y estado activo/inactivo de cada widget en `%LOCALAPPDATA%\OverlayWidgets\settings.json`.
@@ -58,6 +58,18 @@ Si `settings.json` no existe, esta incompleto o no contiene widgets nuevos agreg
 - Rediseño visual de `ClockWidget` como panel cronometro/telemetria.
 - Rediseño visual de `MediaWidget` como modulo de sesion multimedia.
 - Mejor integracion visual del handle `↘` de resize dentro del lenguaje HUD.
+
+### Refinamiento de Capa 4
+
+- Reorientacion visual hacia cockpit anime mecha noventero.
+- Paleta mas industrial: negro, blanco tecnico, verde operativo, ambar, rojo y cian puntual.
+- Reduccion del magenta/violeta como color dominante.
+- Paneles rectos, segmentados y menos modernos.
+- Panel principal renombrado como `PILOT DISPLAY CONTROL`.
+- Selector refinado como `SUB MONITOR BUS / DISPLAY CHANNELS`.
+- Reloj reemplazado por `TimeMonitorView`, una vista programatica con estructura de monitor tecnico.
+- Multimedia refinado como `AUDIO CHANNEL // SUB MONITOR`.
+- Mejor independencia visual respecto del fondo de pantalla del usuario.
 
 ## Capa 3: resize interactivo
 
@@ -106,5 +118,5 @@ El workflow corre en `windows-latest` porque la aplicacion es WPF.
 
 ## Widgets incluidos
 
-- `ClockWidget`: hora y fecha actual.
+- `ClockWidget`: hora y fecha actual mediante `TimeMonitorView`.
 - `MediaWidget`: informacion basica de la sesion multimedia actual de Windows cuando esta disponible.

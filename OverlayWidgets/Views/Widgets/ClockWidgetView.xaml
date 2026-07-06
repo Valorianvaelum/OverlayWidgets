@@ -14,27 +14,31 @@
         <ColumnDefinition Width="*" />
         <ColumnDefinition Width="Auto" />
       </Grid.ColumnDefinitions>
-      <Rectangle Width="4"
-                 Height="20"
-                 Fill="#22D3EE"
-                 RadiusX="2"
-                 RadiusY="2" />
+      <StackPanel Orientation="Horizontal">
+        <Rectangle Width="4"
+                   Height="22"
+                   Fill="#FF4FD8" />
+        <Rectangle Width="2"
+                   Height="22"
+                   Fill="#4DE7FF"
+                   Margin="3,0,0,0" />
+      </StackPanel>
       <StackPanel Grid.Column="1"
                   Orientation="Horizontal"
-                  Margin="8,0,0,0"
+                  Margin="9,0,0,0"
                   VerticalAlignment="Center">
-        <TextBlock Text="CHRONO"
-                   Foreground="#22D3EE"
+        <TextBlock Text="TIME CORE"
+                   Foreground="#FF4FD8"
                    FontSize="10"
                    FontWeight="Bold" />
-        <TextBlock Text=" // LOCAL TIME"
-                   Foreground="#88F8FBFF"
+        <TextBlock Text=" // SYNCHRO CLOCK"
+                   Foreground="#9AD6B8D8"
                    FontSize="10"
                    FontWeight="Bold" />
       </StackPanel>
       <TextBlock Grid.Column="2"
-                 Text="LIVE"
-                 Foreground="#7CFF6B"
+                 Text="SYNC 100"
+                 Foreground="#B6FF5C"
                  FontSize="10"
                  FontWeight="Bold"
                  VerticalAlignment="Center" />
@@ -46,41 +50,61 @@
         <ColumnDefinition Width="*" />
         <ColumnDefinition Width="Auto" />
       </Grid.ColumnDefinitions>
-      <TextBlock Text="{Binding Time}"
-                 Foreground="#F8FBFF"
-                 FontFamily="Cascadia Mono, Consolas, Segoe UI"
-                 FontSize="38"
-                 FontWeight="Bold"
-                 TextOptions.TextFormattingMode="Display" />
+      <StackPanel>
+        <TextBlock Text="{Binding Time}"
+                   Foreground="#FFF7FF"
+                   FontFamily="Cascadia Mono, Consolas, Segoe UI"
+                   FontSize="39"
+                   FontWeight="Bold"
+                   TextOptions.TextFormattingMode="Display" />
+        <Rectangle Height="2"
+                   Fill="#AAFF4FD8"
+                   Margin="1,2,20,0" />
+      </StackPanel>
       <StackPanel Grid.Column="1"
                   Margin="12,0,0,0"
                   VerticalAlignment="Center">
-        <Rectangle Width="34"
-                   Height="2"
-                   Fill="#F472B6"
+        <Rectangle Width="36"
+                   Height="3"
+                   Fill="#FF4FD8"
                    HorizontalAlignment="Right" />
-        <Rectangle Width="22"
-                   Height="2"
-                   Fill="#22D3EE"
+        <Rectangle Width="27"
+                   Height="3"
+                   Fill="#B45CFF"
                    HorizontalAlignment="Right"
                    Margin="0,5,0,0" />
-        <Rectangle Width="12"
-                   Height="2"
-                   Fill="#F59E0B"
+        <Rectangle Width="16"
+                   Height="3"
+                   Fill="#4DE7FF"
+                   HorizontalAlignment="Right"
+                   Margin="0,5,0,0" />
+        <Rectangle Width="8"
+                   Height="3"
+                   Fill="#FFB84D"
                    HorizontalAlignment="Right"
                    Margin="0,5,0,0" />
       </StackPanel>
     </Grid>
 
-    <Border Grid.Row="2"
-            Margin="0,8,0,0"
-            BorderBrush="#4422D3EE"
-            BorderThickness="1,0,0,0"
-            Padding="8,3,0,0">
-      <TextBlock Text="{Binding Date}"
-                 Foreground="#A7B8CA"
-                 FontSize="12"
-                 FontWeight="SemiBold" />
-    </Border>
+    <Grid Grid.Row="2"
+          Margin="0,8,0,0">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <Rectangle Width="3"
+                 Fill="#B45CFF" />
+      <StackPanel Grid.Column="1"
+                  Margin="8,2,0,0">
+        <TextBlock Text="CALENDAR BUFFER"
+                   Foreground="#8E789A"
+                   FontSize="8"
+                   FontWeight="Bold" />
+        <TextBlock Text="{Binding Date}"
+                   Foreground="#D6B8D8"
+                   FontSize="12"
+                   FontWeight="SemiBold" />
+      </StackPanel>
+    </Grid>
   </Grid>
 </UserControl>
