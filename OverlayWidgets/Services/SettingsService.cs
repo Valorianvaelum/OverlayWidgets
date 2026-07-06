@@ -123,6 +123,7 @@ public sealed class SettingsService : ISettingsService
         {
             Id = string.IsNullOrWhiteSpace(widget.Id) ? Guid.NewGuid().ToString("N") : widget.Id,
             Type = string.IsNullOrWhiteSpace(widget.Type) ? fallback.Type : widget.Type,
+            IsEnabled = widget.IsEnabled,
             Left = SanitizeNumber(widget.Left, fallback.Left),
             Top = SanitizeNumber(widget.Top, fallback.Top),
             Width = Math.Clamp(SanitizeNumber(widget.Width, fallback.Width), 120, 900),
@@ -145,6 +146,7 @@ public sealed class SettingsService : ISettingsService
                 new WidgetSettings
                 {
                     Type = WidgetTypes.Clock,
+                    IsEnabled = true,
                     Left = 40,
                     Top = 40,
                     Width = 260,
@@ -153,6 +155,7 @@ public sealed class SettingsService : ISettingsService
                 new WidgetSettings
                 {
                     Type = WidgetTypes.Media,
+                    IsEnabled = true,
                     Left = 40,
                     Top = 170,
                     Width = 320,
