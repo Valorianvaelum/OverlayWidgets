@@ -15,6 +15,7 @@ public partial class MainWindow : Window
     private readonly IWindowOverlayService _windowOverlayService;
     private readonly MainWindowViewModel _viewModel;
     private readonly ILoggerService _logger;
+    private HwndSource? _source;
     private Point? _dragStart;
     private WidgetHostViewModel? _draggedWidget;
 
@@ -25,7 +26,7 @@ public partial class MainWindow : Window
         _logger = new FileLoggerService();
         var settingsService = new SettingsService(_logger);
         var mediaSessionService = new MediaSessionService(_logger);
-        var widgetRegistryService = new WidgetRegistryService(mediaSessionService);
+        var widgetRegistryService = new WidgetRegistryService(mediaSessionService, _logger);
 
         _windowOverlayService = new WindowOverlayService(_logger);
         _viewModel = new MainWindowViewModel(settingsService, widgetRegistryService, _logger);
@@ -40,23 +41,40 @@ public partial class MainWindow : Window
         DataContext = _viewModel;
         _windowOverlayService.Configure(this);
         SourceInitialized += OnSourceInitialized;
-        Closing += (_, _) =>
-        {
-            _windowOverlayService.UnregisterEditModeHotkey(this);
-            _viewModel.Save();
-            _logger.Info("OverlayWidgets closed.");
-        };
+        Closing += OnClosing;
     }
 
     private void OnSourceInitialized(object? sender, EventArgs e)
     {
-        var source = HwndSource.FromHwnd(new WindowInteropHelper(this).Handle);
-        source?.AddHook(OnWindowMessage);
-        _viewModel.IsHotkeyAvailable = _windowOverlayService.RegisterEditModeHotkey(this);
-        HotkeyUnavailableText.Visibility = _viewModel.IsHotkeyAvailable ? Visibility.Collapsed : Visibility.Visible;
-        _viewModel.KeepWidgetsInsideVisibleArea(Width, Height);
-        _windowOverlayService.ApplyMode(this, _viewModel.IsEditMode);
-        _logger.Info("OverlayWidgets started.");
+        try
+        {
+            _source = HwndSource.FromHwnd(new WindowInteropHelper(this).Handle);
+            _source?.AddHook(OnWindowMessage);
+            _viewModel.IsHotkeyAvailable = _windowOverlayService.RegisterEditModeHotkey(this);
+            HotkeyUnavailableText.Visibility = _viewModel.IsHotkeyAvailable ? Visibility.Collapsed : Visibility.Visible;
+            _viewModel.KeepWidgetsInsideVisibleArea(Width, Height);
+            _windowOverlayService.ApplyMode(this, _viewModel.IsEditMode);
+            _logger.Info("OverlayWidgets started.");
+        }
+        catch (Exception exception)
+        {
+            _logger.Error("Could not complete main window initialization.", exception);
+        }
+    }
+
+    private void OnClosing(object? sender, System.ComponentModel.CancelEventArgs e)
+    {
+        try
+        {
+            _source?.RemoveHook(OnWindowMessage);
+            _windowOverlayService.UnregisterEditModeHotkey(this);
+            _viewModel.Save();
+            _logger.Info("OverlayWidgets closed.");
+        }
+        catch (Exception exception)
+        {
+            _logger.Error("OverlayWidgets failed during shutdown.", exception);
+        }
     }
 
     private IntPtr OnWindowMessage(IntPtr hwnd, int message, IntPtr wParam, IntPtr lParam, ref bool handled)

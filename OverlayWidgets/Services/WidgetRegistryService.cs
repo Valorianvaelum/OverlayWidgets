@@ -6,10 +6,10 @@ public sealed class WidgetRegistryService : IWidgetRegistryService
 {
     private readonly Dictionary<string, WidgetDescriptor> _descriptors = new(StringComparer.OrdinalIgnoreCase);
 
-    public WidgetRegistryService(IMediaSessionService mediaSessionService)
+    public WidgetRegistryService(IMediaSessionService mediaSessionService, ILoggerService logger)
     {
         Register(new WidgetDescriptor(WidgetTypes.Clock, "Reloj", () => new ClockWidget()));
-        Register(new WidgetDescriptor(WidgetTypes.Media, "Multimedia", () => new MediaWidget(mediaSessionService)));
+        Register(new WidgetDescriptor(WidgetTypes.Media, "Multimedia", () => new MediaWidget(mediaSessionService, logger)));
     }
 
     public IReadOnlyCollection<WidgetDescriptor> GetAvailableWidgets()

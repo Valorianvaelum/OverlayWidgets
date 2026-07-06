@@ -6,20 +6,22 @@ namespace OverlayWidgets.ViewModels;
 public sealed class MediaWidgetViewModel : ObservableObject
 {
     private readonly IMediaSessionService _mediaSessionService;
+    private readonly ILoggerService _logger;
     private readonly DispatcherTimer _timer;
     private bool _isRefreshing;
     private string _title = "Sin reproduccion";
     private string _subtitle = "No hay una sesion multimedia activa";
     private string _status = "Inactivo";
 
-    public MediaWidgetViewModel(IMediaSessionService mediaSessionService)
+    public MediaWidgetViewModel(IMediaSessionService mediaSessionService, ILoggerService logger)
     {
         _mediaSessionService = mediaSessionService;
+        _logger = logger;
         _timer = new DispatcherTimer
         {
             Interval = TimeSpan.FromSeconds(5)
         };
-        _timer.Tick += async (_, _) => await RefreshAsync();
+        _timer.Tick += OnTimerTick;
         _timer.Start();
         _ = RefreshAsync();
     }
@@ -42,6 +44,11 @@ public sealed class MediaWidgetViewModel : ObservableObject
         private set => SetProperty(ref _status, value);
     }
 
+    private async void OnTimerTick(object? sender, EventArgs e)
+    {
+        await RefreshAsync();
+    }
+
     private async Task RefreshAsync()
     {
         if (_isRefreshing)
@@ -55,9 +62,7 @@ public sealed class MediaWidgetViewModel : ObservableObject
             var media = await _mediaSessionService.GetCurrentMediaAsync();
             if (media is null)
             {
-                Title = "Sin reproduccion";
-                Subtitle = "No hay una sesion multimedia activa";
-                Status = "Inactivo";
+                SetInactiveState();
                 return;
             }
 
@@ -65,10 +70,22 @@ public sealed class MediaWidgetViewModel : ObservableObject
             Subtitle = BuildSubtitle(media.Artist, media.AppName);
             Status = media.IsPlaying ? "Reproduciendo" : "Pausado";
         }
+        catch (Exception exception)
+        {
+            _logger.Warning($"Could not refresh media widget: {exception.Message}");
+            SetInactiveState();
+        }
         finally
         {
             _isRefreshing = false;
         }
+    }
+
+    private void SetInactiveState()
+    {
+        Title = "Sin reproduccion";
+        Subtitle = "No hay una sesion multimedia activa";
+        Status = "Inactivo";
     }
 
     private static string BuildSubtitle(string artist, string appName)
