@@ -110,11 +110,12 @@ public sealed class MainWindowViewModel : ObservableObject
                 _settingsByType[descriptor.Type] = widgetSettings;
             }
 
-            var option = new WidgetOptionViewModel(descriptor.Type, descriptor.DisplayName, widgetSettings.IsEnabled);
+            var isEnabled = widgetSettings.IsEnabled ?? true;
+            var option = new WidgetOptionViewModel(descriptor.Type, descriptor.DisplayName, isEnabled);
             option.PropertyChanged += OnWidgetOptionPropertyChanged;
             WidgetOptions.Add(option);
 
-            if (widgetSettings.IsEnabled)
+            if (isEnabled)
             {
                 AddWidget(widgetSettings);
             }
